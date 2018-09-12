@@ -6,6 +6,7 @@ use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Post controller.
@@ -43,10 +44,9 @@ class PostController extends Controller
         $form = $this->createForm('AppBundle\Form\PostType', $post);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $post->setDate(new \DateTime);
+            $post->setPostedAt(new \DateTime());
             $em->persist($post);
             $em->flush();
 

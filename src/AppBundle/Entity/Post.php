@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -30,6 +31,12 @@ class Post
      */
     private $postedAt;
 
+    /**
+     * @var ArrayCollection<string>
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     */
+    private $comments;
+
 
 
     public function getTitle() {
@@ -47,6 +54,11 @@ class Post
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
     }
     
     public function setPostedAt($postedAt) {

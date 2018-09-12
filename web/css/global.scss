@@ -1,0 +1,6 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.required:after {
+    color: red;
+    content: '*';
+}

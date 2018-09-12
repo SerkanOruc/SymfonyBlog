@@ -5,7 +5,6 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class PostType extends AbstractType
 {
@@ -15,11 +14,13 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('title')
-        ->add('content');
-        // ->add('postedAt', DateType::class, array(
-        //     'widget' => 'choice',
-        // ));
+        ->add('title', null, [
+            'attr' => ['maxlength' => 40],
+            // 'data' => 'Default Blog Title'
+        ])
+        ->add('content', null, [
+            'attr' => ['maxlength' => 255]
+        ]);
     }
     
     /**
@@ -28,7 +29,8 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Post'
+            'data_class' => 'AppBundle\Entity\Post',
+            // 'required' => false
         ));
     }
 

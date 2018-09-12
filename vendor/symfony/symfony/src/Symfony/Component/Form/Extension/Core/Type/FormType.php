@@ -88,7 +88,7 @@ class FormType extends BaseType
             'valid' => $form->isSubmitted() ? $form->isValid() : true,
             'value' => $form->getViewData(),
             'data' => $form->getNormData(),
-            'required' => $form->isRequired(),
+            'required' => $form->isRequired() /*false*/,
             'size' => null,
             'label_attr' => $options['label_attr'],
             'compound' => $form->getConfig()->getCompound(),
